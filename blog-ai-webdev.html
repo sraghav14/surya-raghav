@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building a Website with AI — Surya Raghav</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .post-wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .post-header {
+      padding: 4.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .post-header h1 {
+      margin: 1rem 0 1.2rem;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+    }
+
+    .post-byline {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .post-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+    }
+
+    .post-byline-text strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--white);
+    }
+
+    .post-byline-text span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .post-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    .post-body h2 {
+      font-size: 1.5rem;
+      margin: 2.8rem 0 1rem;
+      color: var(--white);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-body p { margin-bottom: 1.4rem; }
+
+    .post-body blockquote {
+      border-left: 3px solid var(--cobalt);
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      margin: 2rem 0;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .post-body ul {
+      margin: 1rem 0 1.4rem 0;
+      padding-left: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .post-body ul li { color: var(--text); }
+
+    .prompt-box {
+      background: rgba(14,48,96,0.5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--pale);
+      font-family: var(--font);
+      position: relative;
+    }
+
+    .prompt-box::before {
+      content: '💬 Prompt';
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      margin-bottom: 0.6rem;
+    }
+
+    .post-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <span class="dot"></span>
+      Surya Raghav
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="post-wrap">
+      <div class="post-header fade-up">
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.8rem;">
+          <span class="chip">AI</span>
+          <span class="chip">Web Development</span>
+          <span class="chip">DATA 305</span>
+        </div>
+        <h1>Building a Website with AI: What I Learned from Using Claude as a Dev Partner</h1>
+        <div class="post-byline">
+          <img src="assets/images/headshot.jpeg" alt="Surya Raghav" class="post-avatar" />
+          <div class="post-byline-text">
+            <strong>Surya Raghav</strong>
+            <span>February 2026 · 7 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-body fade-up delay-1">
+
+        <p>
+          I am a Finance and Data Science student. I have never taken a web development course. I know what HTML stands for, and I have a vague memory of messing around with CSS in middle school to customize a Tumblr page. So when DATA 305 — <em>Generative AI for Problem Solving</em> — asked us to build and deploy a full personal website using GitHub Pages, I had one thought: this is what AI was made for.
+        </p>
+
+        <p>
+          This post is a reflection on that process: how I used Claude as a development partner, what surprised me, where things broke down, and what I'd do differently next time.
+        </p>
+
+        <h2>Phase 1: Choosing a Framework (The Part Nobody Talks About)</h2>
+
+        <p>
+          Before a single line of code gets written, you have to make a decision that shapes everything else: <em>what tool are you using?</em> The assignment asked us to evaluate at least three static site generators — Jekyll, Hugo, Astro, Quarto, plain HTML, and others.
+        </p>
+
+        <p>
+          I started by asking Claude to walk me through the trade-offs. Not to make the decision for me, but to help me understand what questions I should even be asking. This felt like the natural first prompt:
+        </p>
+
+        <div class="prompt-box">
+          "I'm building a personal portfolio site on GitHub Pages. I have basically no web dev experience. Can you compare Jekyll, Hugo, and plain HTML/CSS for a beginner — focusing on ease of setup, GitHub Pages compatibility, and how well you (Claude) know each one?"
+        </div>
+
+        <p>
+          The response was illuminating. Claude made a point I hadn't considered: its own knowledge matters. Jekyll, being older and more widely documented, had stronger AI support. Astro was cutting-edge but trickier to debug with AI assistance because the syntax was less common in training data.
+        </p>
+
+        <p>
+          I ended up going with <strong>plain HTML/CSS/JS</strong>. Here's why: I wanted full control. I wasn't trying to learn a framework — I was trying to ship a site. And for a beginner using AI, plain HTML means every line of code is something I can actually read and understand, rather than configuration files I'm copying blindly.
+        </p>
+
+        <blockquote>
+          "The best tool is the one you can debug when things go wrong." — advice that applies whether you're writing code or making decisions in finance.
+        </blockquote>
+
+        <h2>Phase 2: Building — Where AI Really Shines</h2>
+
+        <p>
+          Once I had a direction, the build phase was remarkably smooth. Claude was most useful when I gave it <em>specific, context-rich prompts</em> rather than vague ones. Compare these two:
+        </p>
+
+        <div class="prompt-box">
+          ❌ "Make me a portfolio website"
+        </div>
+
+        <div class="prompt-box">
+          ✅ "Create an HTML hero section with a two-column layout: left side has my name, a short bio, two CTA buttons, and three stat counters. Right side has a profile photo with a gradient border. Use CSS variables for a dark navy blue color theme. All text in Inter font."
+        </div>
+
+        <p>
+          The second prompt got me 90% of the way there in a single response. The specificity of the layout, the color theme, and the font choice meant I wasn't rewriting from scratch five times.
+        </p>
+
+        <p>Key things I learned about prompting for code:</p>
+        <ul>
+          <li><strong>Describe the visual outcome</strong>, not just the technical goal. "I want a card that floats up 3px on hover with a blue glow" is better than "add hover effects."</li>
+          <li><strong>Reference what you already have.</strong> Pasting in existing CSS and asking "add a responsive navbar that matches this style" produces far better results than starting fresh.</li>
+          <li><strong>Ask for explanations.</strong> When Claude gave me complex CSS I didn't understand, asking "explain what this `backdrop-filter` property does" turned each bug fix into a mini lesson.</li>
+          <li><strong>Use it to debug.</strong> When my sticky sidebar wasn't working on mobile, pasting the broken code and asking "why isn't `position: sticky` working here?" was faster than any Stack Overflow search.</li>
+        </ul>
+
+        <h2>Phase 3: The Friction Points</h2>
+
+        <p>
+          I don't want to make this sound like a glowing product review. There were real limitations.
+        </p>
+
+        <p>
+          <strong>Context drift.</strong> In a long conversation, Claude would sometimes forget earlier decisions — like the color variables I defined in the first message. I learned to paste in my CSS variables at the start of each new prompt so it had fresh context.
+        </p>
+
+        <p>
+          <strong>Overconfidence.</strong> A few times Claude gave me code that looked correct but had subtle issues — a missing `z-index` on a nav element, a flexbox gap that broke at a specific screen width. The outputs always needed a human eye to validate.
+        </p>
+
+        <p>
+          <strong>Design taste.</strong> AI can generate code, but it defaults to "safe" design choices. The more specific I was about aesthetics — "I want this to feel editorial, not generic startup" — the better the results. Vague prompts produce vague, forgettable designs.
+        </p>
+
+        <h2>What I'd Do Differently</h2>
+
+        <p>
+          If I were starting over, I'd build a <strong>shared style file first</strong> — colors, typography, spacing — and then build pages component by component, always referencing that file. I did this halfway through, and the second half of the project went much faster than the first.
+        </p>
+
+        <p>
+          I'd also keep a running document of my prompts. Looking back at what worked vs. what didn't would be enormously valuable the next time I use AI for a technical project.
+        </p>
+
+        <h2>Final Thoughts</h2>
+
+        <p>
+          As a Finance student, I think about AI in terms of ROI. The time I invested in learning how to prompt well — how to be specific, how to give context, how to iterate — paid dividends throughout the entire project. The code was a byproduct; the real skill was learning how to communicate precisely with a tool that can do almost anything, but only if you tell it exactly what you want.
+        </p>
+
+        <p>
+          That's not so different from managing a team, pitching to a client, or presenting to a board. Clarity of communication is the universal multiplier.
+        </p>
+
+      </div>
+
+      <div class="post-footer fade-up">
+        <a href="blog.html" class="btn btn-outline">← Back to Blog</a>
+        <div style="display:flex; gap:0.75rem;">
+          <span class="chip">AI</span>
+          <span class="chip">Web Dev</span>
+          <span class="chip">DATA 305</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2026 Surya Raghav · Built with GitHub Pages</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/surya-raghav/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

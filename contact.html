@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Surya Raghav</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── LEFT PANEL ─────────────────── */
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .contact-info p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .info-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.3rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(8px);
+      transition: border-color var(--transition);
+    }
+
+    .info-block:hover {
+      border-color: rgba(59,130,246,0.4);
+    }
+
+    .info-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(37,99,235,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .info-content strong {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.2rem;
+    }
+
+    .info-content a,
+    .info-content span {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .info-content a:hover { color: var(--aqua); }
+
+    /* ── SOCIAL ──────────────────────── */
+    .connect-section { margin-top: 0.5rem; }
+    .connect-section h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.9rem 1rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      color: var(--text);
+      transition: all var(--transition);
+      backdrop-filter: blur(8px);
+    }
+
+    .social-card:hover {
+      border-color: rgba(59,130,246,0.45);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .social-card .sc-icon {
+      font-size: 1.3rem;
+    }
+
+    /* ── FORM ────────────────────────── */
+    .contact-form-wrap {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      backdrop-filter: blur(14px);
+    }
+
+    .contact-form-wrap h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-form-wrap > p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 0.5rem;
+      background: var(--cobalt);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px var(--glow);
+      letter-spacing: 0.02em;
+    }
+
+    .submit-btn:hover {
+      background: var(--sky);
+      box-shadow: 0 6px 28px rgba(37,99,235,0.5);
+      transform: translateY(-2px);
+    }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .success-msg .check {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .success-msg h3 { margin-bottom: 0.5rem; }
+    .success-msg p { color: var(--muted); }
+
+    /* ── RESPONSIVE ──────────────────── */
+    @media (max-width: 840px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <span class="dot"></span>
+      Surya Raghav
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="page-hero fade-up">
+        <span class="section-tag">Contact</span>
+        <h1>Let's connect</h1>
+        <p>Whether you have an opportunity, a question, or just want to talk finance or food — my inbox is open.</p>
+      </div>
+
+      <div class="contact-layout">
+
+        <!-- LEFT: INFO -->
+        <div class="contact-info fade-up delay-1">
+          <div class="info-block">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <strong>Email</strong>
+              <a href="mailto:suryaraghav101@gmail.com">suryaraghav101@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <strong>Location</strong>
+              <span>Syosset, NY · Williamsburg, VA</span>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-icon">🎓</div>
+            <div class="info-content">
+              <strong>University</strong>
+              <span>College of William &amp; Mary, Class of 2026</span>
+            </div>
+          </div>
+
+          <!-- MUSIC LINK -->
+          <div class="info-block" style="background:linear-gradient(135deg,rgba(14,48,96,0.7),rgba(37,99,235,0.2)); border-color:rgba(59,130,246,0.35);">
+            <div class="info-icon" style="background:rgba(56,189,248,0.15);">🎵</div>
+            <div class="info-content">
+              <strong>Hear me sing</strong>
+              <!-- UPDATE: Replace href with exact Apple Music URL for your track -->
+              <a href="https://music.apple.com/us/search?term=doubletake+acappella+magic" target="_blank" rel="noopener">
+                "Magic" — DoubleTake A Cappella ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- SOCIAL LINKS -->
+          <div class="connect-section">
+            <h3>Find me online</h3>
+            <div class="social-grid">
+              <a href="https://linkedin.com/in/surya-raghav/" target="_blank" rel="noopener" class="social-card">
+                <span class="sc-icon">💼</span>
+                <span>LinkedIn</span>
+              </a>
+              <a href="mailto:suryaraghav101@gmail.com" class="social-card">
+                <span class="sc-icon">📧</span>
+                <span>Gmail</span>
+              </a>
+              <!-- UPDATE: Replace href with exact Apple Music URL for your track -->
+              <a href="https://music.apple.com/us/search?term=doubletake+acappella+magic" target="_blank" rel="noopener" class="social-card">
+                <span class="sc-icon">🎵</span>
+                <span>Apple Music</span>
+              </a>
+              <a href="mailto:sraghav@wm.edu" class="social-card">
+                <span class="sc-icon">🎓</span>
+                <span>W&amp;M Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: FORM -->
+        <div class="contact-form-wrap fade-up delay-2">
+          <h2>Send a message</h2>
+          <p>Fill out the form below and I'll get back to you as soon as I can.</p>
+
+          <!--
+            Using Formspree for email delivery on static sites.
+            TO ACTIVATE: Sign up at formspree.io, create a form,
+            and replace "YOUR_FORM_ID" in the action URL below.
+            Free tier sends emails directly to suryaraghav101@gmail.com.
+          -->
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+            onsubmit="handleSubmit(event)"
+          >
+            <input type="hidden" name="_replyto" value="suryaraghav101@gmail.com" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first_name" placeholder="Alex" required />
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" placeholder="Chen" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="alex@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Internship opportunity, collaboration, or just hello!" />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message ✉️</button>
+          </form>
+
+          <div class="success-msg" id="success-msg">
+            <div class="check">✅</div>
+            <h3>Message sent!</h3>
+            <p>Thanks for reaching out. I'll reply to your email soon.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2026 Surya Raghav · Built with GitHub Pages</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/surya-raghav/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contact-form');
+      const successMsg = document.getElementById('success-msg');
+
+      // If Formspree is configured, submit via fetch
+      const action = form.getAttribute('action');
+      if (action.includes('YOUR_FORM_ID')) {
+        // Fallback: open mailto directly
+        const name  = document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value;
+        const email = document.getElementById('email').value;
+        const subj  = document.getElementById('subject').value || 'Website Contact';
+        const msg   = document.getElementById('message').value;
+        const body  = encodeURIComponent(`From: ${name} <${email}>\n\n${msg}`);
+        window.location.href = `mailto:suryaraghav101@gmail.com?subject=${encodeURIComponent(subj)}&body=${body}`;
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+        return;
+      }
+
+      try {
+        const data = new FormData(form);
+        const res  = await fetch(action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          alert('Something went wrong. Please email me directly at suryaraghav101@gmail.com');
+        }
+      } catch {
+        alert('Something went wrong. Please email me directly at suryaraghav101@gmail.com');
+      }
+    }
+  </script>
+
+</body>
+</html>

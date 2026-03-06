@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Surya Raghav</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ── TIMELINE ───────────────────────── */
+    .resume-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 1.4rem;
+      position: relative;
+    }
+
+    .timeline-item:not(:last-child) .tl-line {
+      position: absolute;
+      left: 23px;
+      top: 48px;
+      bottom: -12px;
+      width: 1.5px;
+      background: linear-gradient(to bottom, var(--cobalt), transparent);
+    }
+
+    .tl-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--cobalt);
+      border: 2px solid var(--navy);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.25), 0 0 12px rgba(37,99,235,0.3);
+      margin-top: 6px;
+      justify-self: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-body {
+      padding-bottom: 2.8rem;
+    }
+
+    .tl-header {
+      margin-bottom: 0.7rem;
+    }
+
+    .tl-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.15rem;
+    }
+
+    .tl-org {
+      font-size: 0.9rem;
+      color: var(--aqua);
+      font-weight: 500;
+    }
+
+    .tl-date {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .tl-bullets {
+      list-style: none;
+      margin-top: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .tl-bullets li {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.6;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .tl-bullets li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--cobalt);
+      font-weight: 700;
+    }
+
+    /* ── SECTION HEADERS ─────────────── */
+    .resume-section-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 2.5rem 0 1.5rem;
+    }
+
+    .resume-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── SIDEBAR ─────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .sidebar-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .sidebar-card h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      margin-bottom: 1rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-icon {
+      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(37,99,235,0.15);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item a { color: var(--text); font-size: 0.82rem; }
+    .contact-item a:hover { color: var(--aqua); }
+
+    .edu-block { margin-bottom: 1rem; }
+    .edu-block:last-child { margin-bottom: 0; }
+    .edu-block strong { display: block; color: var(--white); font-size: 0.95rem; }
+    .edu-block span { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── DOWNLOAD BUTTON ─────────────── */
+    .download-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── RESPONSIVE ──────────────────── */
+    @media (max-width: 860px) {
+      .resume-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <span class="dot"></span>
+      Surya Raghav
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resume.html" class="active">Resume</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <!-- PAGE HERO -->
+      <div class="page-hero fade-up">
+        <span class="section-tag">Resume</span>
+        <h1>Experience &amp; Education</h1>
+        <p>Finance major, Data Science minor — building at the intersection of numbers, strategy, and technology.</p>
+      </div>
+
+      <div class="download-bar fade-up delay-1">
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <span class="chip">3.75 GPA</span>
+          <span class="chip">James Monroe Scholar</span>
+          <span class="chip">Dean's List — All Semesters</span>
+        </div>
+        <a href="assets/Surya_Raghav_Resume.pdf" download class="btn btn-outline" style="font-size:0.85rem;">⬇ Download PDF</a>
+      </div>
+
+      <div class="resume-layout">
+        <!-- MAIN COLUMN -->
+        <div>
+          <!-- EXPERIENCE -->
+          <div class="resume-section-title">Experience</div>
+          <div class="timeline">
+
+            <div class="timeline-item fade-up">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+              <div class="tl-body">
+                <div class="tl-header">
+                  <div class="tl-title">Strategy Intern</div>
+                  <div class="tl-org">GreenRecycle</div>
+                  <div class="tl-date">Jun 2025 – Aug 2025 · Blairs, VA</div>
+                </div>
+                <ul class="tl-bullets">
+                  <li>Built a pipeline of 100+ prospective B2B clients, identifying key plastic manufacturers and presenting GreenRecycle's value proposition to decision-makers.</li>
+                  <li>Led outbound client outreach, generating qualified leads and securing initial contracts valued at <strong>$1.1 million</strong> by aligning client sustainability needs with recycled plastic pellet solutions.</li>
+                  <li>Analyzed industry trends and pricing benchmarks to inform go-to-market strategy, optimizing sales targeting and improving conversion efficiency.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item fade-up delay-1">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+              <div class="tl-body">
+                <div class="tl-header">
+                  <div class="tl-title">Finance Intern</div>
+                  <div class="tl-org">ExpertServ USA LLC</div>
+                  <div class="tl-date">Jun 2024 – Jul 2024 · Long Island, NY</div>
+                </div>
+                <ul class="tl-bullets">
+                  <li>Developed financial models in Excel to analyze transactions and forecast operational performance, improving decision-making efficiency.</li>
+                  <li>Innovated the reconciliation process for settlement orders valued over <strong>$10 million</strong>, saving <strong>2,870 man-hours/year</strong>.</li>
+                  <li>Managed invoices, debit notes, and tracking for purchase orders, settlements, and customs duties.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item fade-up delay-2">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+              <div class="tl-body">
+                <div class="tl-header">
+                  <div class="tl-title">Finance Intern</div>
+                  <div class="tl-org">ES Solutions LLC</div>
+                  <div class="tl-date">Jun 2023 – Aug 2023 · Tampa, FL</div>
+                </div>
+                <ul class="tl-bullets">
+                  <li>Monitored accounts payable aging reports and implemented proactive follow-up strategies, reducing overdue accounts by <strong>18%</strong>.</li>
+                  <li>Identified and corrected reconciliation errors, reducing financial reporting discrepancies by <strong>20%</strong>.</li>
+                  <li>Conducted expense analysis, identifying and eliminating redundant costs — resulting in a <strong>15%</strong> reduction in operational expenses.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- LEADERSHIP -->
+          <div class="resume-section-title">Leadership &amp; Activities</div>
+          <div class="timeline">
+
+            <div class="timeline-item fade-up">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+              <div class="tl-body">
+                <div class="tl-header">
+                  <div class="tl-title">President &amp; Business Manager</div>
+                  <div class="tl-org">DoubleTake A Cappella</div>
+                  <div class="tl-date">Dec 2022 – Present · Williamsburg, VA</div>
+                </div>
+                <ul class="tl-bullets">
+                  <li>Increased club revenue by <strong>240%</strong> through strategic partnerships with local businesses.</li>
+                  <li>Managed a <strong>$10,000 budget</strong> and oversaw execution of 80+ events annually.</li>
+                  <li>Featured vocalist on the track "Magic" — available on Apple Music and streaming platforms.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item fade-up delay-1">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+              <div class="tl-body">
+                <div class="tl-header">
+                  <div class="tl-title">Founding Father &amp; Treasurer</div>
+                  <div class="tl-org">Pi Kappa Alpha — Gamma Chapter</div>
+                  <div class="tl-date">Oct 2024 – Present · Williamsburg, VA</div>
+                </div>
+                <ul class="tl-bullets">
+                  <li>Helped establish the Gamma Chapter of Pi Kappa Alpha at William &amp; Mary.</li>
+                  <li>Managed accounts receivable and payable valued at <strong>$20,000+</strong>, achieving a <strong>100%</strong> collection rate.</li>
+                  <li>Ensured compliance with tax-exempt requirements by filing IRS Form 990.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item fade-up delay-2">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+              <div class="tl-body">
+                <div class="tl-header">
+                  <div class="tl-title">President</div>
+                  <div class="tl-org">SEVA</div>
+                  <div class="tl-date">May 2024 – Present · Williamsburg, VA</div>
+                </div>
+                <ul class="tl-bullets">
+                  <li>Organized events for 200+ participants, increasing funds by <strong>300%</strong>.</li>
+                  <li>Led outreach initiatives to engage the broader student population and strengthen community ties.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CERTIFICATIONS -->
+          <div class="resume-section-title">Certifications</div>
+          <div class="card fade-up" style="display:flex; align-items:center; gap:1.2rem; margin-bottom:1rem;">
+            <span style="font-size:2rem;">📊</span>
+            <div>
+              <strong style="display:block; font-size:1rem;">Bloomberg Certificate of Completion</strong>
+              <span style="font-size:0.85rem; color:var(--muted);">Spreadsheet Analysis · Aug 2025 · Economic indicators, equities, fixed income, currencies &amp; Bloomberg Terminal navigation</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+
+          <!-- CONTACT -->
+          <div class="sidebar-card fade-up">
+            <h3>Contact</h3>
+            <div class="contact-item">
+              <span class="contact-icon">✉️</span>
+              <div>
+                <div style="font-size:0.7rem; color:var(--muted); margin-bottom:2px;">Email</div>
+                <a href="mailto:suryaraghav101@gmail.com">suryaraghav101@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <div>
+                <div style="font-size:0.7rem; color:var(--muted); margin-bottom:2px;">Phone</div>
+                <span style="font-size:0.82rem;">(516) 445-6616</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">💼</span>
+              <div>
+                <div style="font-size:0.7rem; color:var(--muted); margin-bottom:2px;">LinkedIn</div>
+                <a href="https://linkedin.com/in/surya-raghav/" target="_blank" rel="noopener">surya-raghav</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <div>
+                <div style="font-size:0.7rem; color:var(--muted); margin-bottom:2px;">Location</div>
+                <span style="font-size:0.82rem;">Syosset, NY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EDUCATION -->
+          <div class="sidebar-card fade-up delay-1">
+            <h3>Education</h3>
+            <div class="edu-block">
+              <strong>College of William &amp; Mary</strong>
+              <span>BBA · Finance, Minor in Data Science</span><br>
+              <span>Expected May 2026 · GPA: 3.75</span>
+            </div>
+            <div style="margin-top:0.75rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <span class="chip">James Monroe Scholar</span>
+              <span class="chip" style="margin-top:0.25rem;">Dean's List — All Semesters</span>
+            </div>
+          </div>
+
+          <!-- SKILLS -->
+          <div class="sidebar-card fade-up delay-2">
+            <h3>Technical Skills</h3>
+            <div class="skill-list">
+              <span class="chip">Python</span>
+              <span class="chip">R</span>
+              <span class="chip">Excel</span>
+              <span class="chip">PowerPoint</span>
+              <span class="chip">Financial Modeling</span>
+              <span class="chip">Data Visualization</span>
+              <span class="chip">Bloomberg Terminal</span>
+              <span class="chip">G-Suite</span>
+            </div>
+          </div>
+
+          <!-- LANGUAGES -->
+          <div class="sidebar-card fade-up delay-3">
+            <h3>Languages</h3>
+            <div class="skill-list">
+              <span class="chip">English</span>
+              <span class="chip">Spanish</span>
+              <span class="chip">Hindi</span>
+            </div>
+          </div>
+
+          <!-- INTERESTS -->
+          <div class="sidebar-card fade-up delay-4">
+            <h3>Interests</h3>
+            <div class="skill-list">
+              <span class="chip">Singing</span>
+              <span class="chip">Cooking</span>
+              <span class="chip">Baking</span>
+              <span class="chip">Pokémon</span>
+              <span class="chip">Fashion</span>
+              <span class="chip">Theater</span>
+              <span class="chip">Travel</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2026 Surya Raghav · Built with GitHub Pages</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/surya-raghav/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

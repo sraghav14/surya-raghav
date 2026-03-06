@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Surya Raghav</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+
+    .blog-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      border-color: rgba(59,130,246,0.45);
+      box-shadow: 0 12px 48px rgba(26,86,219,0.22);
+      transform: translateY(-5px);
+    }
+
+    .blog-card-banner {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-card-banner.blue   { background: linear-gradient(135deg, #0e3060 0%, #1a56db 100%); }
+    .blog-card-banner.teal   { background: linear-gradient(135deg, #064e3b 0%, #0891b2 100%); }
+    .blog-card-banner.purple { background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%); }
+
+    .blog-card-body {
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .blog-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .blog-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .blog-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .blog-card .read-more {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--aqua);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 0.5rem;
+    }
+
+    .blog-card .read-more:hover {
+      color: var(--white);
+    }
+
+    .blog-card .read-more::after {
+      content: '→';
+      transition: transform var(--transition);
+    }
+
+    .blog-card:hover .read-more::after {
+      transform: translateX(4px);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <span class="dot"></span>
+      Surya Raghav
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="page-hero fade-up">
+        <span class="section-tag">Blog</span>
+        <h1>Thoughts &amp; Writing</h1>
+        <p>Where finance, data science, food, and life intersect — essays and reflections from my time at W&amp;M and beyond.</p>
+      </div>
+
+      <div class="blog-grid">
+        <!-- POST 1 -->
+        <a href="blog-ai-webdev.html" style="text-decoration:none;">
+          <article class="blog-card fade-up">
+            <div class="blog-card-banner blue">🤖</div>
+            <div class="blog-card-body">
+              <div class="blog-meta">
+                <span class="chip">AI</span>
+                <span class="chip">Web Dev</span>
+                <span class="blog-date">Feb 2026</span>
+              </div>
+              <h3>Building a Website with AI: What I Learned from Using Claude as a Dev Partner</h3>
+              <p>How a finance student with minimal web dev experience used generative AI to ship a full personal site — and what it taught me about prompting, iteration, and trusting the process.</p>
+              <span class="read-more">Read post </span>
+            </div>
+          </article>
+        </a>
+
+        <!-- POST 2 -->
+        <article class="blog-card fade-up delay-1">
+          <div class="blog-card-banner teal">🍜</div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span class="chip">Food</span>
+              <span class="chip">Culture</span>
+              <span class="blog-date">Coming Soon</span>
+            </div>
+            <h3>Cooking Across Cultures: How 7 Years in India Changed the Way I Eat</h3>
+            <p>From my grandmother's kitchen in Hyderabad to baking croissants in a college apartment — a reflection on food, memory, and identity.</p>
+            <span class="read-more" style="color:var(--muted); cursor:default;">Coming soon</span>
+          </div>
+        </article>
+
+        <!-- POST 3 -->
+        <article class="blog-card fade-up delay-2">
+          <div class="blog-card-banner purple">🎵</div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span class="chip">Music</span>
+              <span class="chip">College Life</span>
+              <span class="blog-date">Coming Soon</span>
+            </div>
+            <h3>What Leading an A Cappella Group Taught Me About Business</h3>
+            <p>Running DoubleTake as President &amp; Business Manager grew revenue 240% — here's how performance and entrepreneurship are more alike than you'd think.</p>
+            <span class="read-more" style="color:var(--muted); cursor:default;">Coming soon</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2026 Surya Raghav · Built with GitHub Pages</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/surya-raghav/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

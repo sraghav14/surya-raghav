@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surya Raghav</title>
+  <meta name="description" content="Surya Raghav — Finance & Data Science student at William & Mary, singer, foodie, and aspiring strategist." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ── HERO ─────────────────────────── */
+    .hero {
+      min-height: calc(100vh - 68px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 5rem clamp(1.5rem,5vw,4rem) 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--aqua);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-eyebrow .pulse {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--aqua);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .hero h1 { margin-bottom: 1rem; }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--cobalt) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.12rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stat strong {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-stat span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── HERO IMAGE ─────────────────── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      width: min(380px, 100%);
+    }
+
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: calc(var(--radius-lg) + 4px);
+      background: linear-gradient(135deg, var(--cobalt), var(--aqua), var(--mid));
+      z-index: 0;
+    }
+
+    .hero-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -18px;
+      border-radius: 50px;
+      background: radial-gradient(ellipse at center, rgba(37,99,235,0.22), transparent 70%);
+      z-index: -1;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Floating badge */
+    .hero-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -28px;
+      background: var(--deep);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 1.3rem;
+      backdrop-filter: blur(12px);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    .hero-badge .icon {
+      font-size: 1.6rem;
+    }
+
+    .hero-badge-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .hero-badge-text span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── ABOUT SECTION ─────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .about-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--transition);
+    }
+
+    .about-img:hover img { transform: scale(1.04); }
+
+    .about-img.tall {
+      grid-row: span 2;
+    }
+
+    .about-img.tall img { height: 100%; }
+
+    .about-text { display: flex; flex-direction: column; gap: 1.2rem; }
+    .about-text p { font-size: 1rem; line-height: 1.75; }
+
+    /* ── INTERESTS ─────────────────── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .interest-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.4rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(8px);
+      transition: all var(--transition);
+    }
+
+    .interest-card:hover {
+      border-color: rgba(59,130,246,0.4);
+      transform: translateY(-3px);
+    }
+
+    .interest-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .interest-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .interest-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── MUSIC BANNER ──────────────── */
+    .music-banner {
+      margin: 0 clamp(1.5rem,5vw,4rem);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--deep) 0%, rgba(37,99,235,0.25) 100%);
+      border: 1px solid rgba(59,130,246,0.3);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .music-banner::before {
+      content: '♪';
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 8rem;
+      color: rgba(37,99,235,0.12);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .music-banner-left { display: flex; align-items: center; gap: 1.4rem; }
+
+    .music-cover {
+      width: 64px; height: 64px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--cobalt), var(--aqua));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .music-info strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .music-info span { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ─────────────────── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 3rem;
+      }
+      .hero-sub { margin: 0 auto 2rem; }
+      .hero-cta { justify-content: center; }
+      .hero-meta { justify-content: center; }
+      .hero-visual { order: -1; }
+      .hero-img-wrap { width: min(280px, 90%); }
+      .hero-badge { left: 50%; transform: translateX(-50%); bottom: -28px; white-space: nowrap; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-images { order: -1; }
+    }
+
+    @media (max-width: 540px) {
+      .about-images { grid-template-columns: 1fr; }
+      .about-img.tall { grid-row: auto; }
+      .about-img.tall img { height: 220px; }
+      .music-banner { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <span class="dot"></span>
+      Surya Raghav
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section style="padding:0; position:relative; z-index:1;">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-eyebrow fade-up">
+            <span class="pulse"></span>
+            William &amp; Mary · Class of 2026
+          </div>
+          <h1 class="fade-up delay-1">
+            Hi, I'm<br/><span>Surya Raghav</span>
+          </h1>
+          <p class="hero-sub fade-up delay-2">
+            Finance &amp; Data Science student, a cappella singer, foodie, and aspiring strategist. I love combining analytical thinking with creativity — whether that's in a spreadsheet or on stage.
+          </p>
+          <div class="hero-cta fade-up delay-3">
+            <a href="resume.html" class="btn btn-primary">View Resume ↗</a>
+            <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+          </div>
+          <div class="hero-meta fade-up delay-4">
+            <div class="hero-stat">
+              <strong>3.75</strong>
+              <span>GPA</span>
+            </div>
+            <div class="hero-stat">
+              <strong>3×</strong>
+              <span>Internships</span>
+            </div>
+            <div class="hero-stat">
+              <strong>80+</strong>
+              <span>Events Led</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-in delay-2">
+          <div class="hero-img-wrap">
+            <img src="assets/images/headshot.jpeg" alt="Surya Raghav" />
+            <div class="hero-badge">
+              <span class="icon">🎵</span>
+              <div class="hero-badge-text">
+                <strong>DoubleTake A Cappella</strong>
+                <span>President &amp; Singer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MUSIC BANNER -->
+    <div class="music-banner fade-up" style="position:relative;z-index:1;">
+      <div class="music-banner-left">
+        <div class="music-cover">🎵</div>
+        <div class="music-info">
+          <strong>Magic (feat. Surya Raghav)</strong>
+          <span>DoubleTake A Cappella · Available on streaming platforms</span>
+        </div>
+      </div>
+      <!-- UPDATE: Replace href below with the exact Apple Music URL for your track -->
+      <a href="https://music.apple.com/us/search?term=doubletake+acappella+magic" target="_blank" rel="noopener" class="btn btn-primary">
+        🎧 Listen Now
+      </a>
+    </div>
+
+    <!-- ABOUT -->
+    <section>
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-images">
+            <div class="about-img tall">
+              <img src="assets/images/travel.jpeg" alt="Surya travelling" loading="lazy" />
+            </div>
+            <div class="about-img">
+              <img src="assets/images/acappella.jpeg" alt="DoubleTake A Cappella group photo" loading="lazy" />
+            </div>
+          </div>
+
+          <div class="about-text">
+            <span class="section-tag">About Me</span>
+            <h2>More than just numbers</h2>
+            <p>
+              I'm a <strong>Finance major with a Data Science minor</strong> at William &amp; Mary, where I've had the privilege of being named a <strong>James Monroe Scholar</strong> — a distinction awarded to fewer than 10% of undergraduates.
+            </p>
+            <p>
+              Beyond the classroom, I've led <strong>DoubleTake A Cappella</strong> as President and Business Manager, growing club revenue by 240%, and helped found the <strong>Gamma Chapter of Pi Kappa Alpha</strong> at W&amp;M.
+            </p>
+            <p>
+              I spent 7 years in India, which gave me a global perspective I carry into everything — from client negotiations to cooking elaborate meals at home.
+            </p>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:0.5rem;">
+              <span class="chip">Finance</span>
+              <span class="chip">Data Science</span>
+              <span class="chip">A Cappella</span>
+              <span class="chip">Foodie</span>
+              <span class="chip">Trilingual</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTERESTS -->
+        <div class="divider"></div>
+        <span class="section-tag">Interests &amp; Passions</span>
+        <h2 style="margin-bottom:0.5rem;">What drives me</h2>
+        <p style="color:var(--muted); max-width:500px; margin-bottom:0">Outside of finance &amp; data, here's what fills my time.</p>
+
+        <div class="interests-grid">
+          <div class="interest-card">
+            <span class="interest-icon">🎵</span>
+            <div>
+              <h3>Singing</h3>
+              <p>President of DoubleTake A Cappella at W&M. Featured on the track "Magic" on streaming platforms.</p>
+            </div>
+          </div>
+          <div class="interest-card">
+            <span class="interest-icon">🍳</span>
+            <div>
+              <h3>Cooking &amp; Baking</h3>
+              <p>A self-proclaimed foodie who loves experimenting in the kitchen — from South Asian dishes to French pastries.</p>
+            </div>
+          </div>
+          <div class="interest-card">
+            <span class="interest-icon">✈️</span>
+            <div>
+              <h3>Travelling</h3>
+              <p>Lived in India for 7 years; passionate about cross-cultural experiences and seeing the world.</p>
+            </div>
+          </div>
+          <div class="interest-card">
+            <span class="interest-icon">🎮</span>
+            <div>
+              <h3>Pokémon &amp; Gaming</h3>
+              <p>Lifelong Pokémon fan. Loves strategy games and anything that scratches that problem-solving itch.</p>
+            </div>
+          </div>
+          <div class="interest-card">
+            <span class="interest-icon">🎭</span>
+            <div>
+              <h3>Theater &amp; Performance</h3>
+              <p>Singer, dancer, and performer — comfortable both on stage and in the boardroom.</p>
+            </div>
+          </div>
+          <div class="interest-card">
+            <span class="interest-icon">👔</span>
+            <div>
+              <h3>Fashion</h3>
+              <p>Believes that personal style is its own form of storytelling and self-expression.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 Surya Raghav · Built with GitHub Pages</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/surya-raghav/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+      <a href="mailto:suryaraghav101@gmail.com">Email</a>
+    </div>
+  </footer>
+
+</body>
+</html>
