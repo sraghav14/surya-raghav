@@ -23,14 +23,18 @@
       position: relative;
     }
 
-    .timeline-item:not(:last-child) .tl-line {
-      position: absolute;
-      left: 23px;
-      top: 48px;
-      bottom: -12px;
-      width: 1.5px;
-      background: linear-gradient(to bottom, var(--cobalt), transparent);
-    }
+    .tl-line {
+  position: absolute;
+  left: 23px;
+  top: 48px;
+  bottom: -12px;
+  width: 1.5px;
+  background: linear-gradient(to bottom, var(--cobalt), transparent);
+}
+
+.timeline-item:last-child .tl-line {
+  display: none;
+}
 
     .tl-dot {
       width: 14px; height: 14px;
